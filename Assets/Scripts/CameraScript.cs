@@ -6,26 +6,25 @@ public class CameraScript : MonoBehaviour
 {
     public Vector3[] Positions;
     public float Speed = 2.0f;
-
     private int mCurrentIndex = 0;
+    private int lastIndex = 1;
+
     private void Start()
     {
-        
+        lastIndex = Positions.Length - 1;
     }
     private void Update()
     {
-        Vector3 currentPos = (Vector3)Positions.GetValue(mCurrentIndex);
-
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (mCurrentIndex < Positions.Length - 1)
-                mCurrentIndex++;
+            mCurrentIndex = lastIndex;
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            if (mCurrentIndex > 0)
-                mCurrentIndex--;
+            mCurrentIndex = 0;
         }
+        Vector3 currentPos = Positions[mCurrentIndex];
+
         transform.position = Vector3.Lerp(transform.position, currentPos, Speed * Time.deltaTime);
     }
 }
