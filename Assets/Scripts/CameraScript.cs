@@ -8,6 +8,7 @@ public class CameraScript : MonoBehaviour
     public float Speed = 2.0f;
     private int mCurrentIndex = 0;
     private int lastIndex = 1;
+    private SideEnum sideToNavigateTo;
 
     private void Start()
     {
@@ -15,16 +16,24 @@ public class CameraScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (sideToNavigateTo == SideEnum.Right)
         {
             mCurrentIndex = lastIndex;
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow))
+        if (sideToNavigateTo == SideEnum.Left)
         {
             mCurrentIndex = 0;
         }
         Vector3 currentPos = Positions[mCurrentIndex];
 
         transform.position = Vector3.Lerp(transform.position, currentPos, Speed * Time.deltaTime);
+    }
+    public void OnLeftClick()
+    {
+        sideToNavigateTo = SideEnum.Left;
+    }
+    public void OnRightClick()
+    {
+        sideToNavigateTo = SideEnum.Right;
     }
 }
