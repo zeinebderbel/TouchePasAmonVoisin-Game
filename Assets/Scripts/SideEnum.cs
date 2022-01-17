@@ -4,6 +4,8 @@ using UnityEngine;
 
 public enum SideEnum
 {
-    Right = 0,
-    Left = 1
+    Default = -1,
+    Window = 0,
+    Right = 1,
+    Left = 2
 }

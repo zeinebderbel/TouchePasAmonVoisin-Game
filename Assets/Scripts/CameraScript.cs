@@ -4,29 +4,58 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    public Vector3[] Positions;
     public float Speed = 2.0f;
-    private int mCurrentIndex = 0;
-    private int lastIndex = 1;
     private SideEnum sideToNavigateTo;
+
+    private Vector3 windowPosition;
+    public Vector3 RightBuildingPosition;
+    public Vector3 LeftBuildingPosition;
+    private Vector3 PositionToNagivateTo;
+
+    public int zoom = 20;
+    public int normal = 41;
+    public float smooth = 5;
+    private bool isZoomed;
 
     private void Start()
     {
-        lastIndex = Positions.Length - 1;
+        isZoomed = false;
+        sideToNavigateTo = SideEnum.Right;
+    }
+
+    public void SetNavigationData(Vector3 newPosition, bool shouldZoom)
+    {
+        windowPosition = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+        isZoomed = shouldZoom;
+        sideToNavigateTo = SideEnum.Window;
     }
     private void Update()
     {
-        if (sideToNavigateTo == SideEnum.Right)
+        //check which side we have to navigate to in order to get the right position
+        switch (sideToNavigateTo)
         {
-            mCurrentIndex = lastIndex;
+            case SideEnum.Right:
+                PositionToNagivateTo = RightBuildingPosition;
+                break;
+            case SideEnum.Left:
+                PositionToNagivateTo = LeftBuildingPosition;
+                break;
+            case SideEnum.Window:
+                PositionToNagivateTo = windowPosition;
+                break;
+            default:
+                break;
         }
-        if (sideToNavigateTo == SideEnum.Left)
+        //Check the FOV
+        if (isZoomed)
         {
-            mCurrentIndex = 0;
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, zoom, smooth * Time.deltaTime);
         }
-        Vector3 currentPos = Positions[mCurrentIndex];
-
-        transform.position = Vector3.Lerp(transform.position, currentPos, Speed * Time.deltaTime);
+        else
+        {
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, normal, smooth * Time.deltaTime);
+        }
+        transform.position = Vector3.Lerp(transform.position, PositionToNagivateTo, Speed * Time.deltaTime);
     }
     public void OnLeftClick()
     {
