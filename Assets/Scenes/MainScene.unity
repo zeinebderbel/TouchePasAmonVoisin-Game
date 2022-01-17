@@ -225,6 +225,18 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Window
       objectReference: {fileID: 0}
+    - target: {fileID: -3826217662195743072, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
+      objectReference: {fileID: 0}
+    - target: {fileID: -906012783733683419, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
+      objectReference: {fileID: 0}
+    - target: {fileID: -779949090356743542, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
       propertyPath: m_Name
       value: crevette
@@ -334,9 +346,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3826217662195743072, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
+      objectReference: {fileID: 0}
+    - target: {fileID: -906012783733683419, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
+      objectReference: {fileID: 0}
+    - target: {fileID: -779949090356743542, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
       propertyPath: m_Name
       value: crevette (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951446146806856922, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
+      propertyPath: m_TagString
+      value: Window
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f21bf2f39d009ce4bb64f760c2940cb2, type: 3}
@@ -941,7 +969,7 @@ MonoBehaviour:
   Speed: 2
   RightBuildingPosition: {x: 472, y: 19.56, z: -275.8}
   LeftBuildingPosition: {x: -68, y: 19.56, z: -275.8}
-  zoom: 20
+  zoom: 10
   normal: 41
   smooth: 5
 --- !u!1 &1084832530 stripped
