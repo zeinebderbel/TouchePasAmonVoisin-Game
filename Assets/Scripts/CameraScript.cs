@@ -68,7 +68,7 @@ public class CameraScript : MonoBehaviour
        }
         */
 
-        /*
+        
         //swipe direction
         if (Input.touchCount > 0)
         {
@@ -88,23 +88,23 @@ public class CameraScript : MonoBehaviour
 
           if (Mathf.Abs(x) == 0 && Mathf.Abs(y) == 0)
           {
-           direction = "Tapped";
+            direction = "Tapped";
           }
 
           else if (Mathf.Abs(x) > Mathf.Abs(y))
           {
-           direction = x > 0 ? "Right" : "Left";
+            sideToNavigateTo = x > 0 ? SideEnum.Left : SideEnum.Right;
           }
 
           else
           {
-           direction = y > 0 ? "Up" : "Down";
+            direction = y > 0 ? "Up" : "Down";
           }
          }
         }
 
         directionText.text = direction; 
-        */
+        
 
         multiTouchInfo = string.Format("Max tap count: {0}\n", maxTapCount);
 
@@ -156,13 +156,5 @@ public class CameraScript : MonoBehaviour
             GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, normal, smooth * Time.deltaTime);
         }
         transform.position = Vector3.Lerp(transform.position, PositionToNagivateTo, Speed * Time.deltaTime);
-    }
-    public void OnLeftClick()
-    {
-        sideToNavigateTo = SideEnum.Left;
-    }
-    public void OnRightClick()
-    {
-        sideToNavigateTo = SideEnum.Right;
     }
 }
