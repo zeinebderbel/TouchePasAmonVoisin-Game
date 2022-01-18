@@ -27,7 +27,6 @@ public class CameraScript : MonoBehaviour
     //direction swiipe
     public Text directionText;
     private Vector2 touchStartPosition, touchEndPosition;
-    private string direction;
     //multitouch
     public Text multiTouchInfoDisplay;
     private int maxTapCount = 0;
@@ -41,7 +40,8 @@ public class CameraScript : MonoBehaviour
 
     public void SetNavigationData(Vector3 newPosition, bool shouldZoom)
     {
-        windowPosition = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+        if(shouldZoom) windowPosition = new Vector3(newPosition.x, newPosition.y, transform.position.z - 100);
+        else windowPosition = new Vector3(newPosition.x, newPosition.y, transform.position.z);
         isZoomed = shouldZoom;
         sideToNavigateTo = SideEnum.Window;
     }
@@ -67,44 +67,40 @@ public class CameraScript : MonoBehaviour
            phaseDisplayText.text = "";
        }
         */
-
         
         //swipe direction
         if (Input.touchCount > 0)
         {
-         theTouch = Input.GetTouch(0);
+            if (isZoomed && Input.touchCount >= 2) //pinch for unzoom
+            {
+            }
 
-         if (theTouch.phase == TouchPhase.Began)
-         {
-          touchStartPosition = theTouch.position;
-         }
+            else //swipe right/left
+            {
+                theTouch = Input.GetTouch(0);
 
-         else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended)
-         {
-          touchEndPosition = theTouch.position;
+                if (theTouch.phase == TouchPhase.Began)
+                {
+                    touchStartPosition = theTouch.position;
+                }
 
-          float x = touchEndPosition.x - touchStartPosition.x;
-          float y = touchEndPosition.y - touchStartPosition.y;
+                else if (theTouch.phase == TouchPhase.Moved || theTouch.phase == TouchPhase.Ended)
+                {
+                    touchEndPosition = theTouch.position;
 
-          if (Mathf.Abs(x) == 0 && Mathf.Abs(y) == 0)
-          {
-            direction = "Tapped";
-          }
+                    float x = touchEndPosition.x - touchStartPosition.x;
+                    float y = touchEndPosition.y - touchStartPosition.y;
 
-          else if (Mathf.Abs(x) > Mathf.Abs(y))
-          {
-            sideToNavigateTo = x > 0 ? SideEnum.Left : SideEnum.Right;
-          }
-
-          else
-          {
-            direction = y > 0 ? "Up" : "Down";
-          }
-         }
+                    if ((Mathf.Abs(x) > Mathf.Abs(y)) && !isZoomed)
+                    {
+                        sideToNavigateTo = x > 0 ? SideEnum.Left : SideEnum.Right;
+                    }
+                    //else{direction = y > 0 ? "Up" : "Down";}
+                }
+            }
         }
-
-        directionText.text = direction; 
         
+
 
         multiTouchInfo = string.Format("Max tap count: {0}\n", maxTapCount);
 
@@ -126,7 +122,7 @@ public class CameraScript : MonoBehaviour
          }
         } 
  
-        multiTouchInfoDisplay.text = multiTouchInfo;
+        //multiTouchInfoDisplay.text = multiTouchInfo;
 
 
         /////////////////////////////////////
