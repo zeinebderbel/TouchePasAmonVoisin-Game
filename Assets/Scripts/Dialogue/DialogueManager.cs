@@ -8,7 +8,6 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public Text continueText;
-    public TextAsset script;
 
     /*
      * Nous avons utilisé des animations pour faire afficher la box des dialogues en la faisant glisser.
@@ -19,35 +18,39 @@ public class DialogueManager : MonoBehaviour
     public Canvas dialogueCanva;
 
     private Queue<string> sentences;
+    private Queue<string> responses;
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        responses = new Queue<string>();
         dialogueCanva.enabled = false;
     }
 
+    
     public void StartDialogue(Dialogue dialogue)
     {
-        Dialogue[] test = JsonUtility.FromJson<Dialogue[]>(script.text.Replace("\r\n", ""));
-        Debug.Log(script.text.Replace("\r\n", "").Replace("\t", ""));
-        foreach (var item in test)
-        {
-            Debug.Log(item);
-        }
-
+        //show dialogue box
         //animator.SetBool("isOpen", true);
         dialogueCanva.enabled = true;
 
+        
+
+        //show the name of the character whom talks
         nameText.text = dialogue.name;
 
+        //show sentences
         sentences.Clear();
-
+        responses.Clear();
 		foreach (string sentence in dialogue.sentences)
 		{
             sentences.Enqueue(sentence);
 		}
-
+        foreach (string res in dialogue.continues)
+        {
+            responses.Enqueue(res);
+        }
         DisplayNextSentence();
     }
 
@@ -60,6 +63,8 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
+        string response = responses.Dequeue();
+        continueText.text = response;
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
 
@@ -79,11 +84,5 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueCanva.enabled = false;
         //animator.SetBool("isOpen", false);
-
-        Dialogue[] test = JsonUtility.FromJson<Dialogue[]>(script.text);
-		foreach (var item in test)
-		{
-            Debug.Log(item);
-		}
     }
 }

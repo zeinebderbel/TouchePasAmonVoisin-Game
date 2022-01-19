@@ -780,7 +780,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -124.6, y: 102.2}
+  m_AnchoredPosition: {x: -124.6, y: 99.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &705507993
@@ -1644,7 +1644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -27, y: 49.4}
+  m_AnchoredPosition: {x: -27, y: 46.5}
   m_SizeDelta: {x: 354.6, y: 55.509995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1453081007
@@ -1722,7 +1722,6 @@ MonoBehaviour:
   nameText: {fileID: 641028918}
   dialogueText: {fileID: 1380638396}
   continueText: {fileID: 257042768}
-  script: {fileID: 4900000, guid: 43be870d8e82f7f46a83dbcccf7b2664, type: 3}
   dialogueCanva: {fileID: 1702261405}
 --- !u!4 &1474872299
 Transform:
@@ -2066,6 +2065,7 @@ MonoBehaviour:
     - '>> Hey yo !'
     - '>> QUOI ?'
     - '>> Ah oui zut.'
+  script: {fileID: 4900000, guid: 43be870d8e82f7f46a83dbcccf7b2664, type: 3}
 --- !u!114 &1620977475
 MonoBehaviour:
   m_ObjectHideFlags: 0
