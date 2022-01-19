@@ -11,7 +11,6 @@ public class WindowHandler : MonoBehaviour
     void OnMouseEnter()
     {
         startcolor = gameObject.GetComponent<Renderer>().material.color;
-        Color color = new Color(236,88,91,255);
         gameObject.GetComponent<Renderer>().material.color = mat.color;
     }
     void OnMouseExit()

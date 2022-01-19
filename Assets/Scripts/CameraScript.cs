@@ -18,7 +18,7 @@ public class CameraScript : MonoBehaviour
     public float smooth = 5;
     private bool isZoomed;
 
-//mobile
+    //mobile
     //touch
     public Text phaseDisplayText;
     private Touch theTouch;
@@ -36,12 +36,12 @@ public class CameraScript : MonoBehaviour
     {
         isZoomed = false;
         sideToNavigateTo = SideEnum.Right;
+
     }
 
     public void SetNavigationData(Vector3 newPosition, bool shouldZoom)
     {
-        if(shouldZoom) windowPosition = new Vector3(newPosition.x, newPosition.y, transform.position.z - 100);
-        else windowPosition = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+        windowPosition = new Vector3(transform.position.x, newPosition.y, newPosition.z);
         isZoomed = shouldZoom;
         sideToNavigateTo = SideEnum.Window;
     }
@@ -67,7 +67,7 @@ public class CameraScript : MonoBehaviour
            phaseDisplayText.text = "";
        }
         */
-        
+
         //swipe direction
         if (Input.touchCount > 0)
         {
@@ -99,29 +99,29 @@ public class CameraScript : MonoBehaviour
                 }
             }
         }
-        
+
 
 
         multiTouchInfo = string.Format("Max tap count: {0}\n", maxTapCount);
 
         if (Input.touchCount > 0)
         {
-         for (int i = 0; i < Input.touchCount; i++)
-         {
-          theTouch = Input.GetTouch(i);
-  
-          multiTouchInfo +=
-           string.Format("Touch {0} - Position {1} - Tap Count: {2} - Finger ID: {3}\nRadius: {4} ({5}%)\n",
-           i, theTouch.position, theTouch.tapCount, theTouch.fingerId, theTouch.radius,
-           ((theTouch.radius/(theTouch.radius + theTouch.radiusVariance)) * 100f).ToString("F1"));
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                theTouch = Input.GetTouch(i);
 
-          if (theTouch.tapCount > maxTapCount)
-          {
-           maxTapCount = theTouch.tapCount;
-          }
-         }
-        } 
- 
+                multiTouchInfo +=
+                 string.Format("Touch {0} - Position {1} - Tap Count: {2} - Finger ID: {3}\nRadius: {4} ({5}%)\n",
+                 i, theTouch.position, theTouch.tapCount, theTouch.fingerId, theTouch.radius,
+                 ((theTouch.radius / (theTouch.radius + theTouch.radiusVariance)) * 100f).ToString("F1"));
+
+                if (theTouch.tapCount > maxTapCount)
+                {
+                    maxTapCount = theTouch.tapCount;
+                }
+            }
+        }
+
         //multiTouchInfoDisplay.text = multiTouchInfo;
 
 
@@ -152,5 +152,13 @@ public class CameraScript : MonoBehaviour
             GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, normal, smooth * Time.deltaTime);
         }
         transform.position = Vector3.Lerp(transform.position, PositionToNagivateTo, Speed * Time.deltaTime);
+    }
+    public void OnLeftClick()
+    {
+        sideToNavigateTo = SideEnum.Left;
+    }
+    public void OnRightClick()
+    {
+        sideToNavigateTo = SideEnum.Right;
     }
 }

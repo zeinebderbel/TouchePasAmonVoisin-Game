@@ -9,6 +9,11 @@ public class MouseCursor : MonoBehaviour
     private Camera mainCamera;
     RaycastHit hit;
     Vector3 previousCameraPosition;
+
+
+    float animSpeed = 1;
+    float animDirection = 1;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -41,11 +46,15 @@ public class MouseCursor : MonoBehaviour
                 previousCameraPosition = mainCamera.transform.position;
                 mainCamera.GetComponent<CameraScript>().SetNavigationData(hit.transform.gameObject.GetComponent<Renderer>().bounds.center, shouldZoom: true);
             }
+            hit.transform.gameObject.GetComponentInParent<Animator>().enabled = true;
+            //    .speed = animSpeed * animDirection;
+            //hit.transform.gameObject.GetComponentInParent<Animation>().Play("ParentAnim");
         }
         else if (Input.GetMouseButtonDown(1))
         {
             if (previousCameraPosition != null)
                 mainCamera.GetComponent<CameraScript>().SetNavigationData(previousCameraPosition, shouldZoom: false);
+
         }
     }
 }
