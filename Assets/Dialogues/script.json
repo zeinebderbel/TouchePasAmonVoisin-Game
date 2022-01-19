@@ -1,0 +1,12 @@
+{
+    "Quete1" : [{
+        "name":"Covidé",
+        "sentences":["Salut toi...","Ca boom ?","Je suis confiné... dur dur la vida loca à la maison..."],
+        "continues":[">> Yo",">> Houla ça n'a pas l'air d'aller...",">> Ok !"]
+    },
+    {
+        "name":"Covidé",
+        "sentences":["Salut toi !","Je suis mooooort.","Enfin, pas littéralement, j'ai le covid et ça va pas fort..."],
+        "continues":[">> Hey yo !",">> QUOI ?",">> Ah oui zut."]
+    }]
+}
