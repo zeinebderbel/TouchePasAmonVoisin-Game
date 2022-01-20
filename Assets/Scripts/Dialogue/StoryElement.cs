@@ -21,6 +21,3 @@ public class StoryElement : MonoBehaviour
         FindObjectOfType<DialogueManager>().StartDialogue(test2[0]);
     }
 }
-
-
-//credit : Sound from Zapsplat.com

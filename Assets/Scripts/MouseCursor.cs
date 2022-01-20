@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class MouseCursor : MonoBehaviour
 {
@@ -50,7 +49,8 @@ public class MouseCursor : MonoBehaviour
             //    .speed = animSpeed * animDirection;
             //hit.transform.gameObject.GetComponentInParent<Animation>().Play("ParentAnim");
         }
-        else if (Input.GetMouseButtonDown(1))
+        
+        else if (Input.GetMouseButtonDown(2))
         {
             if (previousCameraPosition != null)
                 mainCamera.GetComponent<CameraScript>().SetNavigationData(previousCameraPosition, shouldZoom: false);
