@@ -16,7 +16,7 @@ public class CameraScript : MonoBehaviour
     public int zoom = 20;
     public int normal = 41;
     public float smooth = 5;
-    private bool isZoomed;
+    public bool IsZoomed;
 
     //mobile
     //touch
@@ -34,7 +34,7 @@ public class CameraScript : MonoBehaviour
 
     private void Start()
     {
-        isZoomed = false;
+        IsZoomed = false;
         sideToNavigateTo = SideEnum.Right;
 
     }
@@ -42,7 +42,7 @@ public class CameraScript : MonoBehaviour
     public void SetNavigationData(Vector3 newPosition, bool shouldZoom)
     {
         windowPosition = new Vector3(transform.position.x, newPosition.y, newPosition.z);
-        isZoomed = shouldZoom;
+        IsZoomed = shouldZoom;
         sideToNavigateTo = SideEnum.Window;
     }
     private void Update()
@@ -71,7 +71,7 @@ public class CameraScript : MonoBehaviour
         //swipe direction
         if (Input.touchCount > 0)
         {
-            if (isZoomed && Input.touchCount >= 2) //pinch for unzoom
+            if (IsZoomed && Input.touchCount >= 2) //pinch for unzoom
             {
             }
 
@@ -91,7 +91,7 @@ public class CameraScript : MonoBehaviour
                     float x = touchEndPosition.x - touchStartPosition.x;
                     float y = touchEndPosition.y - touchStartPosition.y;
 
-                    if ((Mathf.Abs(x) > Mathf.Abs(y)) && !isZoomed)
+                    if ((Mathf.Abs(x) > Mathf.Abs(y)) && !IsZoomed)
                     {
                         sideToNavigateTo = x > 0 ? SideEnum.Left : SideEnum.Right;
                     }
@@ -143,7 +143,7 @@ public class CameraScript : MonoBehaviour
                 break;
         }
         //Check the FOV
-        if (isZoomed)
+        if (IsZoomed)
         {
             GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, zoom, smooth * Time.deltaTime);
         }

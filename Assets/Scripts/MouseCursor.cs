@@ -9,7 +9,7 @@ public class MouseCursor : MonoBehaviour
     private Camera mainCamera;
     RaycastHit hit;
     Vector3 previousCameraPosition;
-
+    Animator animator;
 
     float animSpeed = 1;
     float animDirection = 1;
@@ -43,18 +43,20 @@ public class MouseCursor : MonoBehaviour
         {
             if (IsCursorOverWindowUI())
             {
+                animator = hit.transform.parent.gameObject.GetComponentInParent<Animator>();
                 previousCameraPosition = mainCamera.transform.position;
                 mainCamera.GetComponent<CameraScript>().SetNavigationData(hit.transform.gameObject.GetComponent<Renderer>().bounds.center, shouldZoom: true);
+                animator.enabled = true;
+                animator.SetFloat("Direction", 1);
+                animator.PlayInFixedTime("ParentAnim", -1, 0);
             }
-            hit.transform.gameObject.GetComponentInParent<Animator>().enabled = true;
-            //    .speed = animSpeed * animDirection;
-            //hit.transform.gameObject.GetComponentInParent<Animation>().Play("ParentAnim");
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) && mainCamera.GetComponent<CameraScript>().IsZoomed)
         {
             if (previousCameraPosition != null)
                 mainCamera.GetComponent<CameraScript>().SetNavigationData(previousCameraPosition, shouldZoom: false);
-
+            animator.SetFloat("Direction",-1);
+            animator.PlayInFixedTime("ParentAnim", -1, 1);
         }
     }
 }
