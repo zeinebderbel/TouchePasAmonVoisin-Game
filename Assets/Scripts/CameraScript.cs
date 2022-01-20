@@ -16,23 +16,23 @@ public class CameraScript : MonoBehaviour
     public int zoom = 20;
     public int normal = 41;
     public float smooth = 5;
-    public bool isZoomed;
+    public bool IsZoomed;
 
     private void Start()
     {
-        isZoomed = false;
+        IsZoomed = false;
         sideToNavigateTo = SideEnum.Right;
     }
 
     public void SetNavigationData(Vector3 newPosition, bool shouldZoom)
     {
         windowPosition = new Vector3(transform.position.x, newPosition.y, newPosition.z);
-        isZoomed = shouldZoom;
+        IsZoomed = shouldZoom;
         sideToNavigateTo = SideEnum.Window;
     }
     public void SetNavigationData(SideEnum side, bool shouldZoom)
     {
-        isZoomed = shouldZoom;
+        IsZoomed = shouldZoom;
         sideToNavigateTo = side;
     }
 
@@ -54,7 +54,7 @@ public class CameraScript : MonoBehaviour
                 break;
         }
         //Check the FOV
-        if (isZoomed)
+        if (IsZoomed)
         {
             GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, zoom, smooth * Time.deltaTime);
         }

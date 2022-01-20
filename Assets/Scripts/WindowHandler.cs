@@ -6,16 +6,19 @@ public class WindowHandler : MonoBehaviour
 {
     Color startcolor;
     public Material mat;
-
+    GameObject parent;
+    private void Start()
+    {
+        parent = gameObject.transform.parent.gameObject;
+    }
     // Start is called before the first frame update
     void OnMouseEnter()
     {
-        startcolor = gameObject.GetComponent<Renderer>().material.color;
-        gameObject.GetComponent<Renderer>().material.color = mat.color;
-
+        startcolor = parent.GetComponent<Renderer>().material.color;
+        parent.GetComponent<Renderer>().material.color = mat.color;
     }
     void OnMouseExit()
     {
-        gameObject.GetComponent<Renderer>().material.color = startcolor;
+        parent.GetComponent<Renderer>().material.color = startcolor;
     }
 }
