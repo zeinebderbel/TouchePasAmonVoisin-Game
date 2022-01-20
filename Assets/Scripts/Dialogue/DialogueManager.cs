@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     public Text nameText;
     public Text dialogueText;
     public Text continueText;
+    private Camera cam;
 
     /*
      * Nous avons utilisé des animations pour faire afficher la box des dialogues en la faisant glisser.
@@ -19,6 +20,12 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
     private Queue<string> responses;
+
+
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +41,8 @@ public class DialogueManager : MonoBehaviour
         //show dialogue box
         //animator.SetBool("isOpen", true);
         dialogueCanva.enabled = true;
+        cam.GetComponent<Transform>().rotation = Quaternion.Euler(2.4f, -90, 0);
 
-        
 
         //show the name of the character whom talks
         nameText.text = dialogue.name;
@@ -83,6 +90,7 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueCanva.enabled = false;
+        cam.GetComponent<Transform>().rotation = Quaternion.Euler(0, -90, 0);
         //animator.SetBool("isOpen", false);
     }
 }

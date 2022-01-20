@@ -13,6 +13,7 @@ public class TouchHandler : MonoBehaviour
     private Vector2 touchStartPosition, touchEndPosition;
     private Vector2 touchStartPosition2, touchEndPosition2;
     public Text multiTouchInfoDisplay;
+    private GameObject touchedObject;
 
     private SideEnum lastPosition;
 
@@ -27,12 +28,29 @@ public class TouchHandler : MonoBehaviour
         lastPosition = SideEnum.Right;
     }
 
-	// Update is called once per frame
 	void Update()
     {
         isZoomed = mainCamera.GetComponent<CameraScript>().isZoomed;
+        
+	    //Select player
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
+            RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 100f);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Debug.Log(hit.transform.name);
+                if (hit.collider != null)
+                {
+                    touchedObject = hit.transform.gameObject;
+                    Debug.Log("Touched " + touchedObject.transform.name);
+                    touchedObject.GetComponent<IAmoving>().toWindow();
+                }
+            }
+        }
         //swipe direction
-        if (Input.touchCount > 0)
+        else if (Input.touchCount > 0)
         {
             if (isZoomed && Input.touchCount >= 2) //pinch for unzoom
             {
@@ -60,6 +78,7 @@ public class TouchHandler : MonoBehaviour
                     {
                         mainCamera.GetComponent<CameraScript>().SetNavigationData(lastPosition, shouldZoom: false);
                         dialogueCanva.enabled = false;
+                        if (touchedObject != null) touchedObject.GetComponent<IAmoving>().isAtWindow = false;
                     }
                 }
 
