@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField]
-    int id { get; set; }
-    [SerializeField]
-    string Name { get; set; }
+    public int Id;
+    public string Name;
 
     private void OnMouseDown()
     {
-        
+        GameManager.CollectItem(this);
     }
 
 }
