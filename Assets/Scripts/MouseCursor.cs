@@ -51,7 +51,7 @@ public class MouseCursor : MonoBehaviour
                 animator.PlayInFixedTime("ParentAnim", -1, 0);
             }
         }
-        else if (Input.GetMouseButtonDown(1) && mainCamera.GetComponent<CameraScript>().IsZoomed)
+        else if (Input.GetMouseButtonDown(1) && mainCamera.GetComponent<CameraScript>().isZoomed)
         {
             if (previousCameraPosition != null)
                 mainCamera.GetComponent<CameraScript>().SetNavigationData(previousCameraPosition, shouldZoom: false);

@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     static Item currentItem;
     static Quest currentQuest;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +20,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public static void CollectItem(Item item)
@@ -35,10 +34,19 @@ public class GameManager : MonoBehaviour
         if (currentItem.Id < currentQuest.ItemsGo.Count - 1)
         {
             currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
-            
+
         }
         else
             if (currentItem == currentQuest.Target)
+        {
             Debug.Log("You win this quest!! Congrats");
+            currentQuest.Panel.SetActive(true);
+            Pause();
+        }
     }
+    static void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
 }

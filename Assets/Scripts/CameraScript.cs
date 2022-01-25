@@ -77,7 +77,7 @@ public class CameraScript : MonoBehaviour
         //swipe direction
         if (Input.touchCount > 0)
         {
-            if (IsZoomed && Input.touchCount >= 2) //pinch for unzoom
+            if (isZoomed && Input.touchCount >= 2) //pinch for unzoom
             {
             }
 
@@ -97,7 +97,7 @@ public class CameraScript : MonoBehaviour
                     float x = touchEndPosition.x - touchStartPosition.x;
                     float y = touchEndPosition.y - touchStartPosition.y;
 
-                    if ((Mathf.Abs(x) > Mathf.Abs(y)) && !IsZoomed)
+                    if ((Mathf.Abs(x) > Mathf.Abs(y)) && !isZoomed)
                     {
                         sideToNavigateTo = x > 0 ? SideEnum.Left : SideEnum.Right;
                     }
