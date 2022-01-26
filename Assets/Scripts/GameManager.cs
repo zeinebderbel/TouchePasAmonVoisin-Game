@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     static Item currentItem;
     static Quest currentQuest;
+    private Camera mainCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,21 +16,16 @@ public class GameManager : MonoBehaviour
         var components = Array.ConvertAll(GameObject.FindObjectsOfType(typeof(Item), true), i => i as Component).ToList();
         currentQuest.ItemsGo = components.Select(i => i.gameObject).ToList();
         currentQuest.Collector = new Collector();
+        mainCamera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public static void CollectItem(Item item)
+    public void CollectItem(Item item)
     {
         currentItem = item;
         currentQuest.CollectItem(item);
         ActivateNextItem();
     }
-    static void ActivateNextItem()
+     void ActivateNextItem()
     {
         if (currentItem.Id < currentQuest.ItemsGo.Count - 1)
         {
@@ -40,8 +36,11 @@ public class GameManager : MonoBehaviour
             if (currentItem == currentQuest.Target)
         {
             Debug.Log("You win this quest!! Congrats");
-            currentQuest.Panel.SetActive(true);
-            Pause();
+            mainCamera.GetComponent<CameraScript>().SetNavigationData(currentQuest.questVictim.gameObject.transform.position, shouldZoom: true);
+            currentQuest.questVictim.GetComponent<Animator>().SetFloat("Direction", 1);
+            currentQuest.questVictim.GetComponent<Animator>().PlayInFixedTime("ParentAnim", -1, 0);
+            //currentQuest.Panel.SetActive(true);
+            //Pause();
         }
     }
     static void Pause()
