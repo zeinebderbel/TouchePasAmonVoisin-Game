@@ -8,15 +8,21 @@ public class IAmoving : MonoBehaviour
     private NavMeshAgent agent;
     public GameObject zone;
     public GameObject window;
-    private float timer;
     public float speed;
     public bool isAtWindow;
+    public bool isAskingForHelp;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.speed = speed;
         isAtWindow = false;
+        if (isAskingForHelp)
+        {
+            isAtWindow = true;
+            GetComponent<Animator>().Play("Defeat");
+            GetComponent<Animator>().SetBool("isAskingForHelp", true);
+        }
     }
 
     
@@ -44,6 +50,7 @@ public class IAmoving : MonoBehaviour
         agent.SetDestination(new Vector3(randX, zone.transform.position.y, randZ));
         GetComponent<Animator>().Play("Walk");
         GetComponent<Animator>().SetBool("isMoving", true);
+        GetComponent<Animator>().SetBool("isAskingForHelp", false);
     }
     
 

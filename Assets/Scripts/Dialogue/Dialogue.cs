@@ -5,8 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Dialogue
 {
-    private int numero;
     public string name;
+    [HideInInspector]
+    public int numero;
     [TextArea(3,10)]
     public string[] sentences;
     [TextArea(3, 10)]

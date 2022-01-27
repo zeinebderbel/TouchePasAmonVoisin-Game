@@ -12,10 +12,12 @@ public class TouchHandler : MonoBehaviour
     //direction swipe & pinch
     private Vector2 touchStartPosition, touchEndPosition;
     private Vector2 touchStartPosition2, touchEndPosition2;
-    public Text multiTouchInfoDisplay;
-    private GameObject touchedObject;
 
-    private SideEnum lastPosition;
+    //window opening
+    SideEnum previousCameraPosition;
+    Animator animatorWindow;
+
+    private IAmoving selectedCharacter;
 
     private void Awake()
     {
@@ -25,14 +27,13 @@ public class TouchHandler : MonoBehaviour
     private void Start()
 	{
         isZoomed = mainCamera.GetComponent<CameraScript>().isZoomed;
-        lastPosition = SideEnum.Right;
     }
 
 	void Update()
     {
         isZoomed = mainCamera.GetComponent<CameraScript>().isZoomed;
         
-	    //Select player
+	    //Select
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -40,12 +41,24 @@ public class TouchHandler : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * 100, Color.yellow, 100f);
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.transform.name);
-                if (hit.collider != null)
+                //Debug.Log(hit.transform.name); //name of actor hit
+
+                if (hit.transform.gameObject.tag.Equals("Window") && !isZoomed)
                 {
-                    touchedObject = hit.transform.gameObject;
-                    Debug.Log("Touched " + touchedObject.transform.name);
-                    touchedObject.GetComponent<IAmoving>().toWindow();
+                    animatorWindow = hit.transform.parent.gameObject.GetComponentInParent<Animator>();
+                    if (mainCamera.GetComponent<CameraScript>().sideToNavigateTo != SideEnum.Window)
+                        previousCameraPosition = mainCamera.GetComponent<CameraScript>().sideToNavigateTo;
+                    mainCamera.GetComponent<CameraScript>().SetNavigationData(hit.transform.gameObject.GetComponent<Renderer>().bounds.center, shouldZoom: true);
+                    animatorWindow.enabled = true;
+                    animatorWindow.SetFloat("Direction", 1);
+                    animatorWindow.PlayInFixedTime("ParentAnim", -1, 0);
+                }
+
+                else if (hit.transform.gameObject.TryGetComponent<IAmoving>(out IAmoving mov))
+                {
+                    //Debug.Log("Touched " + hit.transform.gameObject.transform.name);
+                    selectedCharacter = mov;
+                    selectedCharacter.toWindow();
                 }
             }
         }
@@ -54,8 +67,6 @@ public class TouchHandler : MonoBehaviour
         {
             if (isZoomed && Input.touchCount >= 2) //pinch for unzoom
             {
-                string multiTouchInfo = ""; //debug
-
                 Touch touch1 = Input.GetTouch(0);
                 Touch touch2 = Input.GetTouch(1);
 
@@ -76,16 +87,15 @@ public class TouchHandler : MonoBehaviour
 
                     if (touchEndPosition != Vector2.zero || touchEndPosition2 != Vector2.zero)
                     {
-                        mainCamera.GetComponent<CameraScript>().SetNavigationData(lastPosition, shouldZoom: false);
                         dialogueCanva.enabled = false;
-                        if (touchedObject != null) touchedObject.GetComponent<IAmoving>().isAtWindow = false;
+                        if (selectedCharacter != null) selectedCharacter.isAtWindow = false;
+
+                        if (previousCameraPosition != default)
+                            mainCamera.GetComponent<CameraScript>().SetNavigationData(previousCameraPosition, shouldZoom: false);
+                        animatorWindow.SetFloat("Direction", -1);
+                        animatorWindow.PlayInFixedTime("ParentAnim", -1, 1);
                     }
                 }
-
-                //debug
-                
-                multiTouchInfo = "touch 1 "+touchEndPosition+" & touch 2 "+touchEndPosition2;
-                multiTouchInfoDisplay.text = multiTouchInfo;
                 
             }
 
@@ -107,7 +117,7 @@ public class TouchHandler : MonoBehaviour
 
                     if ((Mathf.Abs(x) > Mathf.Abs(y)))
                     {
-                        lastPosition = x > 0 ? SideEnum.Left : SideEnum.Right;
+                        SideEnum lastPosition = x > 0 ? SideEnum.Left : SideEnum.Right;
                         mainCamera.GetComponent<CameraScript>().SetNavigationData(lastPosition, shouldZoom: false);
                     }
                     //else{direction = y > 0 ? "Up" : "Down";}

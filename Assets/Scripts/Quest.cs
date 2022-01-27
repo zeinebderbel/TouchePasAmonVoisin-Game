@@ -19,5 +19,13 @@ public class Quest : MonoBehaviour
     {
         if (!Collector.Collect(item))
             Debug.LogError("Wrong order of item to collect!!");
+        else
+        {
+            gameObject.GetComponent<DialogueManager>().triggerDialogue(item.Id);
+            if (item.transform.gameObject.TryGetComponent<IAmoving>(out IAmoving mov))
+            {
+                mov.toWindow();
+            }
+        }
     }
 }

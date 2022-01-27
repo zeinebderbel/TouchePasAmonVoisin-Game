@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
         if (currentItem.Id < currentQuest.ItemsGo.Count - 1)
         {
             currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
-
         }
         else
             if (currentItem == currentQuest.Target)

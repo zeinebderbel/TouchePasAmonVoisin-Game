@@ -38,12 +38,6 @@ public class CameraScript : MonoBehaviour
 
     private void Update()
     {
-        IsZoomed = shouldZoom;
-        sideToNavigateTo = side;
-    }
-
-    private void Update()
-    {
         //check which side we have to navigate to in order to get the right position
         switch (sideToNavigateTo)
         {
