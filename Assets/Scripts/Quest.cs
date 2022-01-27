@@ -11,6 +11,9 @@ public class Quest : MonoBehaviour
     public Item Target;
     [HideInInspector]
     public List<GameObject> ItemsGo;
+    public GameObject questVictim;
+
+    public GameObject Panel;
 
     public void CollectItem(Item item)
     {

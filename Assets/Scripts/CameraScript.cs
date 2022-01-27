@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     public float Speed = 2.0f;
-    private SideEnum sideToNavigateTo;
+    public SideEnum sideToNavigateTo;
 
     private Vector3 windowPosition;
     public Vector3 RightBuildingPosition;
