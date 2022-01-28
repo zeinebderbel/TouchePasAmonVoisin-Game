@@ -5,9 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Quete1.unity
     guid: 7c8e664a9d24e6240a1c07c288ad3c1a
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: fa7eac2c74ac0e540a65e2dd8785fdde
+  - enabled: 1
+    path: Assets/Scenes/Quete2.unity
+    guid: 9a48aadd1d4916d49a8efee6d5e9bfa3
+  - enabled: 1
+    path: Assets/Scenes/ThatsALotOfNoise.unity
+    guid: a139d1f18a2f274448dc094e03146070
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: d6120950f3247ad4f96a706b33abf177
