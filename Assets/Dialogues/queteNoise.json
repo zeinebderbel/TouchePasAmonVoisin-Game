@@ -7,20 +7,26 @@
     },
     {
         "numero":1,
-        "name":"Cuisto",
-        "sentences":["*cuisine*","*cuisine*","Ah bonjour ! Avec tout ce bruit en cuisine je ne vous avais pas vu !","Des filets de rougets au basilic.","Oui, tout à fait, le filou avec son collier rose m'a piqué du poisson ! Il est reparti tel un voleur."],
-        "continues":[">> Bonjour ?",">> BONJOUR !",">> Que cuisinez-vous ?",">> Du poisson hum... Auriez-vous vu passer un chat ?",">> D'accord, merci !"]
+        "name":"Ado",
+        "sentences":["Eh oh, c'est à moi ça !","Je joue aux jeux vidéos avec mes amis.","Bien sur que non, on joue à la traversée des animaux ","Oui.","Regarde la tête du voisin, ce n'est pas normal, je suis sur qu'il est suspect."],
+        "continues":[">> Et tu en fais quoi de ce casque-micro ?",">> AH ! Et vous ne ragez jamais ?",">> Ah oui...?",">> Et tu ne saurais pas qui fait du bruit tous les soirs ?",">> D'accord, je vais aller lui parler."]
     },
     {
         "numero":2,
-        "name":"Collier",
-        "sentences":["Un collier ! Le chat a du passer par ici, chasser les oiseaux."],
-        "continues":[">> OK !"]
+        "name":"Vache",
+        "sentences":["Oh la vache, bonjour Meuhsieur-dame ! ","Ce n'est pas parce que je suis fort comme un boeuf que je fais du bruit !","Si, quelqu'un dans la résidence meuglait des \"Hi ha\" hier soir.", "Je vous demande pardon ?"],
+        "continues":[">> Bonjour, il parait que vous faites beaucoup de bruit ?",">> Oui bien sur... Vous n'avez rien entendu de spécial ces temps-ci ?",">> Je vais prendre le taureau par les cornes et aller voir !",">> Rien, j'y vais."]
     },
     {
         "numero":3,
-        "name":"Mamier",
-        "sentences":["Oh Tigrouuu, merci Inspecteur !"],
-        "continues":[">> Je ne fais que mon devoir."]
+        "name":"M et Mme Cowboy",
+        "sentences":["Oui c'est des chaussures de cowboy, c'était la journée du rodéo hier ! On a du faire un peu de bruit...","Les murs sont fins vous savez...","Oui, sauf pendant la journée des chapeaux de cowboy bien sûr !"],
+        "continues":[">> Vous avez entendu la discussion ?",">> Et vous ne referez plus de bruit ?",">> Bien sur."]
+    },
+    {
+        "numero":4,
+        "name":"Mr le businessman",
+        "sentences":["Ah c'était bien l'ado du dessus. Quel silence, merci inspecteur ! Je vaus pouvoir me concentrer sur mes affaires de businessman en paix."],
+        "continues":[">> Mais de rien."]
     }]
 }

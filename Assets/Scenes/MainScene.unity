@@ -1976,7 +1976,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 3, y: 95.999985}
-  m_SizeDelta: {x: 1313.9, y: 71.806}
+  m_SizeDelta: {x: 1187.5, y: 129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &447282647
 MonoBehaviour:
@@ -6636,6 +6636,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Window_BR
       objectReference: {fileID: 0}
+    - target: {fileID: 8700884986923619830, guid: 5553c010b6fa9024097b8b90ce16c1b5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8913748256807497129, guid: 5553c010b6fa9024097b8b90ce16c1b5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7478,7 +7482,7 @@ MonoBehaviour:
   continueText: {fileID: 257042768}
   manager: {fileID: 1453081008}
   dialogueCanva: {fileID: 1702261405}
-  script: {fileID: 4900000, guid: 43be870d8e82f7f46a83dbcccf7b2664, type: 3}
+  script: {fileID: 4900000, guid: 79fef0a04cac24147a5617213042df66, type: 3}
 --- !u!1001 &1822746746
 PrefabInstance:
   m_ObjectHideFlags: 0
