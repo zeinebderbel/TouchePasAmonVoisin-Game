@@ -31,8 +31,7 @@ public class GameManager : MonoBehaviour
         {
             currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
         }
-        else
-            if (currentItem == currentQuest.Target)
+        else if (currentItem == currentQuest.Target)
         {
             Debug.Log("You win this quest!! Congrats");
             mainCamera.GetComponent<CameraScript>().SetNavigationData(currentQuest.questVictim.gameObject.transform.position, shouldZoom: true);

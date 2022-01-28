@@ -34,7 +34,10 @@ public class IAmoving : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("isMoving", false);
         }
-
+        if (!(agent.hasPath) && isAtWindow)
+        {
+            transform.rotation = Quaternion.LookRotation(Vector3.right);
+        }
         if (!(agent.hasPath) && !(isAtWindow))
         {
             if (Random.value < 0.001f)

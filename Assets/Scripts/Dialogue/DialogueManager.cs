@@ -10,9 +10,9 @@ public class DialogueManager : MonoBehaviour
     public Text continueText;
 
     /*
-     * Nous avons utilisé des animations pour faire afficher la box des dialogues en la faisant glisser.
+     * Nous voulions utiliser des animations pour faire afficher la box des dialogues en la faisant glisser.
      * Comme chaque fenêtre ont des positions différentes, il fallait fixer la position du canva à la caméra.
-     * Mais en fixant à la caméra la position, il n'est plus possible de modifier la position du canva dans la scène.
+     * Mais en fixant à la caméra la position, il n'est plus possible de modifier la position du canva dans la scène. Donc l'affichage de la bulle de dialogue se fait sans animation.
      */
     //public Animator animator;
     public Canvas dialogueCanva;
