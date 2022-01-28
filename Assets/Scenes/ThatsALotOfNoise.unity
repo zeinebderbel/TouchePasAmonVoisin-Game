@@ -4011,7 +4011,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Quete2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &801774222
@@ -7219,7 +7219,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MainScene
+          m_StringArgument: ThatsALotOfNoise
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1577942382
