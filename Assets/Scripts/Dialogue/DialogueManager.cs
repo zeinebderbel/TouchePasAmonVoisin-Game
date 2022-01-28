@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class DialogueManager : MonoBehaviour
 {
     public Text nameText;
+    private int num;
     public Text dialogueText;
     public Text continueText;
-
+    public GameManager manager;
+    
     /*
      * Nous voulions utiliser des animations pour faire afficher la box des dialogues en la faisant glisser.
      * Comme chaque fenêtre ont des positions différentes, il fallait fixer la position du canva à la caméra.
@@ -39,6 +41,7 @@ public class DialogueManager : MonoBehaviour
 
         //show the name of the character whom talks
         nameText.text = dialogue.name;
+        num = dialogue.numero;
 
         //show sentences
         sentences.Clear();
@@ -83,6 +86,7 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueCanva.enabled = false;
+        manager.GetComponent<GameManager>().affWinScreen(num);
         //cam.GetComponent<Transform>().rotation = Quaternion.Euler(0, -90, 0);
         //animator.SetBool("isOpen", false);
     }

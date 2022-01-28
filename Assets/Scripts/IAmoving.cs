@@ -49,7 +49,7 @@ public class IAmoving : MonoBehaviour
 
 	void isMovingRand() {
         float randX = Random.Range(zone.transform.position.x - 2, zone.transform.position.x + 2);
-        float randZ = Random.Range(zone.transform.position.z - 1, zone.transform.position.z + 1);
+        float randZ = Random.Range(zone.transform.position.z - 0.9f, zone.transform.position.z + 0.9f);
         agent.SetDestination(new Vector3(randX, zone.transform.position.y, randZ));
         GetComponent<Animator>().Play("Walk");
         GetComponent<Animator>().SetBool("isMoving", true);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 using System;
 
@@ -9,7 +10,8 @@ public class GameManager : MonoBehaviour
     static Item currentItem;
     static Quest currentQuest;
     private Camera mainCamera;
-    // Start is called before the first frame update
+    public Canvas winScreen;
+
     void Start()
     {
         currentQuest = GameObject.FindObjectOfType<Quest>();
@@ -17,6 +19,7 @@ public class GameManager : MonoBehaviour
         currentQuest.ItemsGo = components.Select(i => i.gameObject).ToList();
         currentQuest.Collector = new Collector();
         mainCamera = Camera.main;
+        winScreen.enabled = false;
     }
 
     public void CollectItem(Item item)
@@ -39,6 +42,15 @@ public class GameManager : MonoBehaviour
             currentQuest.questVictim.GetComponent<Animator>().PlayInFixedTime("ParentAnim", -1, 0);
             //currentQuest.Panel.SetActive(true);
             //Pause();
+        }
+    }
+    public void affWinScreen(int dialNum)
+    {
+        if (currentQuest.Target.Id == dialNum)
+        {
+            Debug.Log("aff screen");
+            winScreen.enabled = true;
+
         }
     }
     static void Pause()
