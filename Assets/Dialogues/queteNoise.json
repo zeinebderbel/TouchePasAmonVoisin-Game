@@ -1,0 +1,26 @@
+{
+    "Quete1" : [{
+        "numero":0,
+        "name":"Mr le businessman",
+        "sentences":["Oh non ça va encore recommencer...","Le soir depuis quelques jours, c'est impossible de ce concentrer sur des affaires de businessman.","Quelqu'un fait beaucoup de bruit. S'il vous plait, vous seriez bien urbain de faire cesser ce bruit."],
+        "continues":[">> Bonsoir, quoi donc ?",">> Pourquoi ?",">> D'accord je vais enquêter."]
+    },
+    {
+        "numero":1,
+        "name":"Cuisto",
+        "sentences":["*cuisine*","*cuisine*","Ah bonjour ! Avec tout ce bruit en cuisine je ne vous avais pas vu !","Des filets de rougets au basilic.","Oui, tout à fait, le filou avec son collier rose m'a piqué du poisson ! Il est reparti tel un voleur."],
+        "continues":[">> Bonjour ?",">> BONJOUR !",">> Que cuisinez-vous ?",">> Du poisson hum... Auriez-vous vu passer un chat ?",">> D'accord, merci !"]
+    },
+    {
+        "numero":2,
+        "name":"Collier",
+        "sentences":["Un collier ! Le chat a du passer par ici, chasser les oiseaux."],
+        "continues":[">> OK !"]
+    },
+    {
+        "numero":3,
+        "name":"Mamier",
+        "sentences":["Oh Tigrouuu, merci Inspecteur !"],
+        "continues":[">> Je ne fais que mon devoir."]
+    }]
+}
