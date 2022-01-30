@@ -1,0 +1,53 @@
+{
+    "Quete": [
+        {
+            "numero": 0,
+            "name": "Mamie",
+            "sentences": [ "Oh bonsoir, ravi de vous revoir Mr inspecteur", "Oh oui, savez vous qu'aujourd'hui est la fête des voisins?!","Eh bein pour atténuer la tension causée par les récents évenments, nous fêtons ceci!", "Pourriez vous répartir et coordonner les tâches d'organisation avec nos voisins?", "Petit conseil, commencez par le chef pour voir le menu avec lui!" ],
+            "continues": [ ">> Merci merci! Que vois je ici? vous préparez quelque chose? ", ">> Jamais entendu parlé!", ">> Très bonne idée! Comment pourrais je vous aider?", ">> Avec plaisir!", ">> Entendu"]
+        },
+        {
+            "numero": 1,
+            "name": "Cuisto",
+            "sentences": [ "Ah bonsoir ! Heureux de vous voir encore de retour chez nous!", "Ah oui ça! Ne vous en faites pas, je vous concocte un menu .. mama mia comment vous allez vous régaler! Mais Il nous manque du lait pour les enfants." ],
+            "continues": [ ">> Bonjour Chef! Merci c'est très gentil. Je suis ici aussi pour voir si vous préparez l'apéro d'aujourd'hui.", ">> Très bonne nouvelle! Je vous laisse alors préparer le festin. Je crois savoir où trouver du lait!"]
+        },
+        {
+            "numero": 2,
+            "name": "Vache",
+            "sentences": [ "Hola!", "Du lait? Je n'ai que ça!", "Mais je voulais savoir si vous avez des nouvelles sur notre covidé! Pourriez vous consulter le docteur afin d'avoir des updates?" ],
+            "continues": [ ">> Bonsoir! Auriez vous du lait à servir pour la fête?", ">>Top!", ">> Oui biensur!  Direction docteur!" ]
+        },
+        {
+            "numero": 3,
+            "name": "Docteur",
+            "sentences": [ "Hey!", "Vous tombez au bon moment! Je viens de recevoir les résultats de son bilan qui sont positifs, son état est maintenant stable, il peut mettre fin à sa quarantaine!" ],
+            "continues": [ ">> Dr, auriez vous des nouvelles sur notre covidé? c'est la fête ce soir ça serait bien de le voir avec vous!", ">> Super! Je file lui donner les bonnes nouvelles!" ]
+        },
+        {
+            "numero": 4,
+            "name": "Covidé",
+            "sentences": [ "Faites gaffe monsieur, ne vous approchez pas trop de moi je suis encore à mon 999 jours de confinement!", "Oh wey! Je vais enfin les rencontrer!"],
+            "continues": [ ">> Et ça sera ton dernier! Liberté vous a été attribuée, vous sortez de chez vous aujourd'hui! Rdv dans 1h pour la faire la fiesta avec tes voisins adorés!", ">> A tout à l'heure" ]
+        },
+        {
+            "numero": 5,
+            "name": "Mr business man",
+            "sentences": [ "Hey toi!", "Je pense que j'ai des ballons quelque part! D'accord comptez sur moi!", "Hmm mais je pense que cette fois un peu de musique serait bien appréciée!" ],
+            "continues": [ ">> Bonsoir Mr! Seriez vous disponible pour décorer le batiment pour la soirée?", ">> Merci!", ">>Bonne idée!" ]
+        },
+        {
+            "numero": 6,
+            "name": "Ado",
+            "sentences": [ "J'ai rien fait cette fois Mr l'inspecteur!", "Oh que oui! Let's go je ramène ma chaine stereo et je prépare une playlist on fire! Mais pour plus d'ambiance ça serait aussi bien si on avait plus de lumière!" ],
+            "continues": [ ">> Non petit, ne t'en fais pas. En fait, nous avons besoin de toi pour mettre l'ambiance dans la soirée!", ">> Je pense que les Cowboy Family pourront nous aider!" ]
+        },
+        {
+            "numero": 7,
+            "name": "M et Mme Cowboy",
+            "sentences": [ "Hi ha! Bonsoir.", "Bien évidemment! Nous avons une usine à lampadaire! Je m'en occupe!" ],
+            "continues": [ ">> Bonsoir, pourriez vous vous occuper des lumières pour une ambiance plus chaleureuse pour la soirée?" ]
+        }
+
+    ]
+}

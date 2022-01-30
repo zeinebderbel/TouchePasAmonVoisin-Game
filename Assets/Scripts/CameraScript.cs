@@ -6,18 +6,18 @@ public class CameraScript : MonoBehaviour
 {
     public float Speed = 2.0f;
     public SideEnum sideToNavigateTo;
-
+    private bool centred = false;
     private Vector3 windowPosition;
     public Vector3 RightBuildingPosition;
     public Vector3 LeftBuildingPosition;
     private Vector3 PositionToNagivateTo;
-
+    public Vector3 centerPosition;
     //zoom
     public int zoom = 20;
     public int normal = 41;
     public float smooth = 5;
     public bool isZoomed;
-
+    public int centerEndZoom;
     private void Start()
     {
         isZoomed = false;
@@ -50,11 +50,19 @@ public class CameraScript : MonoBehaviour
             case SideEnum.Window:
                 PositionToNagivateTo = windowPosition;
                 break;
+            case SideEnum.Center:
+                PositionToNagivateTo = centerPosition;
+                centred = true;
+                break;
             default:
                 break;
         }
         //Check the FOV
-        if (isZoomed)
+        if(centred)
+        {
+            GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, centerEndZoom, smooth * Time.deltaTime);
+        }
+        else if (isZoomed)
         {
             GetComponent<Camera>().fieldOfView = Mathf.Lerp(GetComponent<Camera>().fieldOfView, zoom, smooth * Time.deltaTime);
         }

@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     static Quest currentQuest;
     private Camera mainCamera;
     public Canvas winScreen;
-
+    
     void Start()
     {
         currentQuest = GameObject.FindObjectOfType<Quest>();
@@ -24,17 +24,19 @@ public class GameManager : MonoBehaviour
 
     public void CollectItem(Item item)
     {
-        currentItem = item;
-        currentQuest.CollectItem(item);
-        ActivateNextItem();
-    }
-     void ActivateNextItem()
-    {
-        if (currentItem.Id < currentQuest.ItemsGo.Count - 1)
+        if ( (item.Id == 0 && currentItem == null)
+            || (currentItem != null && item.Id == currentItem.Id +1 && currentItem.Id < currentQuest.ItemsGo.Count - 1))
         {
-            currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
+            currentItem = item;
+            currentQuest.CollectItem(item);
+            ActivateNextItem();
         }
-        else if (currentItem == currentQuest.Target)
+    }
+    void ActivateNextItem()
+    {
+        currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
+        
+        if (currentItem == currentQuest.Target)
         {
             Debug.Log("You win this quest!! Congrats");
             mainCamera.GetComponent<CameraScript>().SetNavigationData(currentQuest.questVictim.gameObject.transform.position, shouldZoom: true);
@@ -49,8 +51,9 @@ public class GameManager : MonoBehaviour
         if (currentQuest.Target.Id == dialNum)
         {
             Debug.Log("aff screen");
+            mainCamera.GetComponent<CameraScript>().SetNavigationData(SideEnum.Center, shouldZoom: false);
             winScreen.enabled = true;
-
+           // Pause();
         }
     }
     static void Pause()

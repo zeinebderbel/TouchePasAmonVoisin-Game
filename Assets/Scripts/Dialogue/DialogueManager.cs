@@ -97,13 +97,13 @@ public class DialogueManager : MonoBehaviour
     [SerializeField]
     private class Wrapper<Dialogue>
     {
-        public Dialogue[] Quete1;
+        public Dialogue[] Quete;
     }
     public void triggerDialogue(int number)
     {
         //get json dialogue
         Wrapper<Dialogue> test = JsonUtility.FromJson<Wrapper<Dialogue>>(script.text);
-        Dialogue[] test2 = test.Quete1;
+        Dialogue[] test2 = test.Quete;
         foreach (var dial in test2)
         {
             if (dial.numero == number)
