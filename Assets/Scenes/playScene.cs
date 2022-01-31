@@ -11,4 +11,9 @@ public class playScene : MonoBehaviour
     {
         SceneManager.LoadScene(scenename, LoadSceneMode.Single);
     }
+
+	public void quit()
+	{
+        Application.Quit();
+    }
 }
