@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     static Quest currentQuest;
     private Camera mainCamera;
     public Canvas winScreen;
-    
+
     void Start()
     {
         currentQuest = GameObject.FindObjectOfType<Quest>();
@@ -34,14 +34,29 @@ public class GameManager : MonoBehaviour
     }
     void ActivateNextItem()
     {
-        currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
-        
+        try
+        {
+            currentQuest.ItemsGo.Where(i => i.GetComponent<Item>().Id == currentItem.Id + 1).Select(i => i).FirstOrDefault().gameObject.SetActive(true);
+        }
+        catch (NullReferenceException nullEx)
+        {
+            Debug.LogWarning("Il n'y a pas d'item suivant.\n"+ nullEx);
+        }
+
         if (currentItem == currentQuest.Target)
         {
             Debug.Log("You win this quest!! Congrats");
-            mainCamera.GetComponent<CameraScript>().SetNavigationData(currentQuest.questVictim.gameObject.transform.position, shouldZoom: true);
-            currentQuest.questVictim.GetComponent<Animator>().SetFloat("Direction", 1);
-            currentQuest.questVictim.GetComponent<Animator>().PlayInFixedTime("ParentAnim", -1, 0);
+            try
+            {
+                mainCamera.GetComponent<CameraScript>().SetNavigationData(currentQuest.questVictimEnd.gameObject.transform.position, shouldZoom: true);
+                currentQuest.questVictimEnd.GetComponent<Animator>().SetFloat("Direction", 1);
+                currentQuest.questVictimEnd.GetComponent<Animator>().PlayInFixedTime("ParentAnim", -1, 0);
+            }
+            catch (UnassignedReferenceException e)
+            {
+                Debug.Log("dézoom");
+                mainCamera.GetComponent<CameraScript>().SetNavigationData(SideEnum.Center, shouldZoom: false);
+            }
             //currentQuest.Panel.SetActive(true);
             //Pause();
         }
@@ -51,7 +66,6 @@ public class GameManager : MonoBehaviour
         if (currentQuest.Target.Id == dialNum)
         {
             Debug.Log("aff screen");
-            mainCamera.GetComponent<CameraScript>().SetNavigationData(SideEnum.Center, shouldZoom: false);
             winScreen.enabled = true;
            // Pause();
         }

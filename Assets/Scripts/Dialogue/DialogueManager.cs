@@ -93,7 +93,6 @@ public class DialogueManager : MonoBehaviour
 
 
     public TextAsset script; //json
-
     [SerializeField]
     private class Wrapper<Dialogue>
     {
@@ -107,7 +106,7 @@ public class DialogueManager : MonoBehaviour
         foreach (var dial in test2)
         {
             if (dial.numero == number)
-                FindObjectOfType<DialogueManager>().StartDialogue(dial);
+                StartDialogue(dial);
         }
     }
 }

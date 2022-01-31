@@ -10,9 +10,6 @@ public class MouseCursor : MonoBehaviour
     SideEnum previousCameraPosition;
     Animator animator;
 
-    float animSpeed = 1;
-    float animDirection = 1;
-
     // Start is called before the first frame update
     private void Awake()
     {
@@ -40,7 +37,7 @@ public class MouseCursor : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (IsCursorOverWindowUI())
+            if (IsCursorOverWindowUI() && !mainCamera.GetComponent<CameraScript>().isZoomed)
             {
                 animator = hit.transform.parent.gameObject.GetComponentInParent<Animator>();
                 if (mainCamera.GetComponent<CameraScript>().sideToNavigateTo != SideEnum.Window)
